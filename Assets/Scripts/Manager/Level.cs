@@ -4,11 +4,11 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
-public class LevelDesign : MonoBehaviour {
-
+public class Level : MonoBehaviour 
+{
     public Text count, count_End, comment_End;
     public GameObject background, gameStart, gameOver, end, player, pause, canvas;
-    bool isPause, isNext;
+    bool isNext;
     float second, curTime, minute;
 
     void Start()
@@ -54,16 +54,6 @@ public class LevelDesign : MonoBehaviour {
                 break;
         }
 
-        //일시정지
-        if (isPause)
-        {
-            Time.timeScale = 0;
-        }
-        else
-        {
-            Time.timeScale = 1;
-        }
-
         //배경전환
         if (isNext)
         {
@@ -91,7 +81,7 @@ public class LevelDesign : MonoBehaviour {
     //GameOver
     void GameOver()
     {
-        isPause = true;
+        Time.timeScale = 0;
         gameOver.SetActive(true);
         StartCoroutine("End");
     }
@@ -125,13 +115,12 @@ public class LevelDesign : MonoBehaviour {
         {
             comment_End.text = "설마 이렇게 오래 버틴거야??";
         }
-
     }
 
     //일시정지
     public void OnClickPasue()
     {
-        isPause = true;
+        Time.timeScale = 0;
         pause.SetActive(true);
     }
 
@@ -151,6 +140,7 @@ public class LevelDesign : MonoBehaviour {
     public void OnClickReplay()
     {
         SceneManager.LoadScene(1);
+        Time.timeScale = 1;
     }
 
     //이어 하기
@@ -165,6 +155,7 @@ public class LevelDesign : MonoBehaviour {
     public void OnClickTitle()
     {
         SceneManager.LoadScene(0);
+        Time.timeScale = 1;
     }
 
     //3초 카운트
@@ -188,7 +179,7 @@ public class LevelDesign : MonoBehaviour {
         {
             dur3--;
             yield return WaitForUnscaledSeconds(1f);
-            isPause = false;
+            Time.timeScale = 1;
         }
     }
 

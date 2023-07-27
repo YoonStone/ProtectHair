@@ -3,7 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class TimeLimit : MonoBehaviour {
+public class TimeLimit : MonoBehaviour
+ {
     public Image timeLimit;
     public float waitTime = 5.0f;
 
